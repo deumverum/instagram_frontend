@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom';
-
+import Link from "next/link"     
 export default function Section() {
     return (
         <div className="main">
@@ -39,7 +38,7 @@ export default function Section() {
             </div>
             <div className="second_box">
                 <div className="card card_log">
-                    <h4>Есть аккаунт? <a>Вход</a></h4>
+                    <h4>Есть аккаунт? <Link href="/login">Вход</Link></h4>
                 </div>
             </div>
             <div className="download"><h4>Установите приложение</h4></div>

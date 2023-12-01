@@ -1,10 +1,15 @@
+// components/myposts/index.js
+import React from 'react';
 import MyPost from './mypost';
 
-export default function MyPosts(props) {
-  const { posts } = props;
+const MyPosts = ({ posts }) => {
   const showPosts = posts.map((item, index) => (
-    <MyPost key={index} imageUrl={item.imageUrl} altText={item.altText} />
+    <MyPost key={index} imageUrl={item.imageUrl} altText={item.caption} />
   ));
 
   return <div className='grid_posts'>{showPosts}</div>;
-}
+};
+
+export default MyPosts;
+
+

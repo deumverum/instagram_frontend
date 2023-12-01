@@ -6,7 +6,7 @@
 .right_side_log{
     display: flex;
     flex-direction: column;
-    width: 21%;
+    width: 30%;
 }
 .first_box_log {
     align-items: center;

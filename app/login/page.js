@@ -1,3 +1,4 @@
+import Link from "next/link"  
 export default function Section() {
     return (
         <div className="main_login">
@@ -35,7 +36,7 @@ export default function Section() {
                     </div>
                     <div className="second_box_log">
                         <div className="card card_log">
-                            <h4>У вас ещё нет аккаунта?<a>Зарегистрироваться</a></h4>
+                            <h4>У вас ещё нет аккаунта?<Link href="/">Зарегистрироваться</Link></h4>
                         </div>
                     </div>
                     <div className="download"><h4>Установите приложение</h4></div>

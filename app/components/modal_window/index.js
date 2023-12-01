@@ -1,73 +1,87 @@
 import React, { useRef, useState } from 'react';
-import ImagePreviewModal from './ImagePreviewModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhotoFilm, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import ImagePreviewAfterSelectModal from './image_preview';
+import ThirdModal from './image_preview_last';
 
-const PostModal = ({ onClose }) => {
-  // Создаем реф для доступа к элементу input типа file
+const CombinedModal = ({ onClose }) => {
   const fileInputRef = useRef();
-  // Состояние для хранения выбранного изображения
   const [selectedImage, setSelectedImage] = useState(null);
+  const [step, setStep] = useState(1);
 
-  // Обработчик изменения выбранного файла
   const handleFileInputChange = (e) => {
-    // Получаем файл из события
     const file = e.target.files[0];
     if (file) {
-      // Создаем объект FileReader для чтения содержимого файла как URL
       const reader = new FileReader();
-      // Устанавливаем обработчик события onloadend, который сработает после завершения чтения файла
       reader.onloadend = () => {
-        // Устанавливаем выбранное изображение в состояние
         setSelectedImage(reader.result);
+        setStep(2);
       };
-      // Читаем содержимое файла как URL
       reader.readAsDataURL(file);
     }
   };
 
-  // Обработчик клика по кнопке выбора файла
   const handleChooseFileClick = () => {
-    // Принудительно кликаем на невидимый input типа file
     fileInputRef.current.click();
   };
 
-  // Обработчик закрытия предварительного просмотра изображения
-  const handleCloseImagePreview = () => {
-    // Сбрасываем выбранное изображение
+  const handleCloseModal = () => {
     setSelectedImage(null);
+    setStep(1);
+    onClose();
+  };
+
+  const handleNext = () => {
+    setStep((prevStep) => prevStep + 1);
+  };
+
+  const handleBack = () => {
+    setStep((prevStep) => prevStep - 1);
   };
 
   return (
     <div className="modal">
       <div className="modal-content">
-        {/* Кнопка закрытия модального окна */}
-        <div className="close-btn" onClick={onClose}>×</div>
+        <div className="close-btn" onClick={handleCloseModal}>×</div>
         <div className='tittle'>
           <h2>Создать новый пост</h2>
         </div>
         <div className='photo_btn'>
+          <FontAwesomeIcon icon={faPhotoFilm} style={{ fontSize: '100px' }} />
           <h2>Перетащите видео и фото сюда</h2>
-          {/* Если выбрано изображение, показываем модальное окно предварительного просмотра */}
-          {selectedImage && (
-            <ImagePreviewModal
+
+          {step === 1 && (
+            <>
+              {!selectedImage && (
+                <>
+                  <button className='create_btn' onClick={handleChooseFileClick}>
+                    Выбрать с компьютера
+                  </button>
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    style={{ display: 'none' }}
+                    onChange={handleFileInputChange}
+                  />
+                </>
+              )}
+            </>
+          )}
+
+          {step === 2 && selectedImage && (
+            <ImagePreviewAfterSelectModal
               imageUrl={selectedImage}
-              onClose={handleCloseImagePreview}
+              onClose={handleCloseModal}
+              onNext={handleNext}
+              onBack={handleBack}
             />
           )}
-          {/* Если изображение не выбрано, показываем кнопку выбора файла */}
-          {!selectedImage && (
-            <>
-              {/* Кнопка выбора файла */}
-              <button className='create_btn' onClick={handleChooseFileClick}>
-                Выбрать с компьютера
-              </button>
-              {/* Скрытый input типа file для выбора файла */}
-              <input
-                type="file"
-                ref={fileInputRef}
-                style={{ display: 'none' }}
-                onChange={handleFileInputChange}
-              />
-            </>
+
+          {step === 3 && (
+            <ThirdModal
+              imageUrl={selectedImage}
+              onClose={handleCloseModal}
+            />
           )}
         </div>
       </div>
@@ -75,7 +89,7 @@ const PostModal = ({ onClose }) => {
   );
 };
 
-export default PostModal;
+export default CombinedModal;
 
 
 
