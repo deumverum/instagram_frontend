@@ -1,8 +1,10 @@
 // components/myposts/mypost/index.js
-export default function MyPost({ imageUrl, altText }) {
-    return (
-      <div className="post">
-        <img src={imageUrl} alt={altText} />
-      </div>
-    );
-  }
+import React, { useState } from 'react';
+
+export default function MyPost({ imageUrl, altText, onPostClick }) {
+  return (
+    <div className="post" onClick={onPostClick}>
+      <img src={imageUrl} alt={altText} />
+    </div>
+  );
+}
