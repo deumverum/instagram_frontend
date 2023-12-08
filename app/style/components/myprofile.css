@@ -1,4 +1,8 @@
 .main{
+    border-bottom: 1px solid rgba(219, 219, 219, 1);
+    margin: 0;
+}
+.main_width{
     width: 60%;
     margin: 0 auto;
 }
@@ -8,7 +12,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(219, 219, 219, 1);
 }
 .logo img{
     box-sizing: border-box;
@@ -44,6 +47,13 @@
     gap: 22px;
 }
 .nav_btn button{
+    font-size: 22px;
+    color: rgba(38, 38, 38, 1);
+    background-color: #fff;
+    padding: 0;
+    cursor: pointer;
+}
+.link{
     font-size: 22px;
     color: rgba(38, 38, 38, 1);
     background-color: #fff;
@@ -310,3 +320,19 @@
     display: flex;
     height: 100%;
 }
+.comments{
+    margin-top: 50px;
+}
+.comment{
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+}
+.delete{
+    color: red;
+    background-color: transparent;
+    width: 20%;
+    cursor: pointer;
+}
+
+
