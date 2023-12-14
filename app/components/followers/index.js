@@ -46,16 +46,16 @@ const FollowersModal = ({ followersList, onClose }) => {
                 <div className="person_info">
                   <h4>{follower.nickname}</h4>
                   <p>·</p>
-                  {deletedFollowers.includes(follower.id) ? (
+                  {deletedFollowers.includes(follower.id) && 
                     <button onClick={() => handleFollow(follower.id)}>Follow</button>
-                  ) : (
-                    <button className="remove" onClick={() => handleRemove(follower.id)}>
-                      Remove
-                    </button>
-                  )}
+                  }
                 </div>
                 <h3>{follower.fullName}</h3>
               </div>
+              {!deletedFollowers.includes(follower.id) &&
+              <button className="remove" onClick={() => handleRemove(follower.id)}>
+                Remove
+              </button>}
             </div>
           ))}
         </div>

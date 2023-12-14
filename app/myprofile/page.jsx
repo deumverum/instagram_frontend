@@ -2,15 +2,15 @@
 // MyProfile.js
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHouse } from '@fortawesome/free-solid-svg-icons';
 import {
-  faHouse,
   faEllipsis,
   faMagnifyingGlass,
   faMessage,
   faSquarePlus,
   faCompass,
   faHeart,
-} from '@fortawesome/free-solid-svg-icons';
+} from '@fortawesome/free-regular-svg-icons';
 import PostModal from '../components/modal_window/index';
 import MyPosts from '../components/myposts';
 import FollowersModal from '../components/followers/index';
@@ -129,49 +129,51 @@ export default function MyProfile() {
 
   return (
     <div className="main">
+      <div className='header_line'>
+        <header className="header">
+          <div className="logo">
+            <img src="/img/instagram_logo.png" alt="Instagram Logo" />
+          </div>
+          <div className="search">
+            <FontAwesomeIcon
+              icon={faMagnifyingGlass}
+              className="icon-ellipsis"
+            />
+            <input placeholder="Поиск" />
+          </div>
+          <div className="nav_btns">
+            <div className="nav_btn">
+              <button>
+                <Link href="/home" className='link'><FontAwesomeIcon icon={faHouse} /></Link>
+              </button>
+            </div>
+            <div className="nav_btn">
+              <button>
+                <FontAwesomeIcon icon={faMessage} />
+              </button>
+            </div>
+            <div className="nav_btn">
+              <button onClick={openModal}>
+                <FontAwesomeIcon icon={faSquarePlus} />
+              </button>
+            </div>
+            <div className="nav_btn">
+              <button>
+                <FontAwesomeIcon icon={faCompass} />
+              </button>
+            </div>
+            <div className="nav_btn">
+              <button>
+                <FontAwesomeIcon icon={faHeart} />
+              </button>
+            </div>
+            <div className="header_prof_pic">
+              <img src="/img/profile_pic.png" alt="Profile" />
+            </div>
+          </div>
+        </header>
+      </div>
       <div className='main_width'>
-      <header className="header">
-        <div className="logo">
-          <img src="/img/instagram_logo.png" alt="Instagram Logo" />
-        </div>
-        <div className="search">
-          <FontAwesomeIcon
-            icon={faMagnifyingGlass}
-            className="icon-ellipsis"
-          />
-          <input placeholder="Поиск" />
-        </div>
-        <div className="nav_btns">
-          <div className="nav_btn">
-            <button>
-                <Link className='link' href="/home"><FontAwesomeIcon icon={faHouse} /></Link>
-            </button>
-          </div>
-          <div className="nav_btn">
-            <button>
-              <FontAwesomeIcon icon={faMessage} />
-            </button>
-          </div>
-          <div className="nav_btn">
-            <button onClick={openModal}>
-              <FontAwesomeIcon icon={faSquarePlus} />
-            </button>
-          </div>
-          <div className="nav_btn">
-            <button>
-              <FontAwesomeIcon icon={faCompass} />
-            </button>
-          </div>
-          <div className="nav_btn">
-            <button>
-              <FontAwesomeIcon icon={faHeart} />
-            </button>
-          </div>
-          <div className="header_prof_pic">
-            <img src="/img/profile_pic.png" alt="Profile" />
-          </div>
-        </div>
-      </header>
       <div className="profile_info">
         <div className="prof_pic">
           <img src="/img/profile_pic.png" alt="Profile" />
@@ -208,10 +210,10 @@ export default function MyProfile() {
               fill="none"
             >
             </svg>
-            <button onClick={openFollowersModal}>POSTS</button>
+            <button>POSTS</button>
           </div>
           <div className="post_btn">
-            <button onClick={openFollowingModal}>REELS</button>
+            <button>REELS</button>
           </div>
           <div className="post_btn">
             <button>POSTS</button>

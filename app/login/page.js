@@ -18,7 +18,7 @@ export default function Section() {
                                     </div>
                                 </form>
                             <button className="fcb_button">
-                                <p>Войти через Facebook</p>
+                                <p>Log in</p>
                             </button>
                             <div className="line_part">
                                         <div className="line"></div>
