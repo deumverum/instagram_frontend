@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Story from './story';
 import StoryModal from '../story_modal/index';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const Stories = ({ stories }) => {
   const [modalData, setModalData] = useState(null);
@@ -25,6 +27,7 @@ const Stories = ({ stories }) => {
 
   return (
     <div className='stories'>
+      <FontAwesomeIcon icon={faArrowRight} className='scroll_story'/>
       {showStories}
       {modalData && (
         <StoryModal

@@ -50,6 +50,7 @@
     color: rgb(0, 149, 246);
 }
 .stories{
+    position: relative;
     display: flex;
     gap: 15px;
     overflow: hidden;
@@ -158,17 +159,17 @@
     text-transform: uppercase;
     padding: 0px 0px 16px 0px;
 }
-.comment{
+.comm{
     position: relative;
     display: flex;
     gap: 10px;
     justify-content: left;
     padding: 12px 0;
 }
-.comment svg{
+.comm svg{
     font-size: 26px;
 }
-.comment input{
+.comm input{
     width: 85%;
     color: var(--Black, #262626);
     font-size: 16px;
@@ -179,7 +180,7 @@
     outline: none;
     border: none;
 }
-.comment button{
+.comm button{
     position: absolute;
     color: var(--Blue, #0095F6);
     font-size: 16px;
@@ -192,4 +193,15 @@
     width: 0;
     text-align: left;
     right: 30px;
+    opacity: .6;
+}
+
+.scroll_story{
+    position: absolute;
+    right: 15px;
+    bottom: 50%;
+    font-size: 25px;
+    color: rgb(122, 122, 122);
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
 }

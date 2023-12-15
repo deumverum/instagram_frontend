@@ -7,12 +7,15 @@ import {
   faPlay,
   faPause,
   faEllipsis,
+  faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
 
 const StoryModal = ({ profilePic, additionalImages, username, currentIndex, closeModal }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(currentIndex);
   const [isPlaying, setIsPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [showLeftButton, setShowLeftButton] = useState(false);
+  const [showRightButton, setShowRightButton] = useState(true);
 
   useEffect(() => {
     let timer;
@@ -36,13 +39,12 @@ const StoryModal = ({ profilePic, additionalImages, username, currentIndex, clos
       progressTimer = setInterval(() => {
         setProgress((prevProgress) => {
           if (prevProgress + progressIncrement >= 100) {
-            // Сбросить прогресс, когда он достигает 100%
             handleNextImage();
             return 0;
           }
           return prevProgress + progressIncrement;
         });
-      }, 50); // 150 мс интервал для пошагового обновления прогресса
+      }, 50);
     }
 
     return () => {
@@ -50,20 +52,48 @@ const StoryModal = ({ profilePic, additionalImages, username, currentIndex, clos
     };
   }, [isPlaying, currentImageIndex]);
 
+  useEffect(() => {
+    setShowLeftButton(currentImageIndex > 0);
+    setShowRightButton(currentImageIndex < additionalImages.length - 1);
+  }, [currentImageIndex]);
+
   const handleNextImage = () => {
-    setProgress(0); // Сбросить прогресс при переходе к следующему изображению
-    const nextIndex = (currentImageIndex + 1) % additionalImages.length;
-    setCurrentImageIndex(nextIndex);
+    setProgress(0);
+    const nextIndex = currentImageIndex + 1;
+
+    if (nextIndex < additionalImages.length) {
+      setCurrentImageIndex(nextIndex);
+      setShowLeftButton(true); // Показать стрелку влево после просмотра первой картинки
+    } else {
+      // Достигнут конец изображений
+      setIsPlaying(false);
+      closeModal();
+    }
+  };
+
+  const handlePrevImage = () => {
+    setProgress(0);
+    const prevIndex = currentImageIndex - 1;
+
+    if (prevIndex >= 0) {
+      setCurrentImageIndex(prevIndex);
+    }
+
+    setShowRightButton(prevIndex < additionalImages.length - 1);
+    setShowLeftButton(prevIndex > 0);
   };
 
   const handleTogglePlay = () => {
     setIsPlaying(!isPlaying);
   };
 
-  const currentImage = currentImageIndex < additionalImages.length ? additionalImages[currentImageIndex] : profilePic;
+  const currentImage =
+    currentImageIndex < additionalImages.length ? additionalImages[currentImageIndex] : profilePic;
 
   return (
     <div className='story-modal'>
+      <FontAwesomeIcon icon={faArrowLeft} className='prev_story_none' />
+      {showLeftButton && <FontAwesomeIcon icon={faArrowLeft} onClick={handlePrevImage} className='prev_story' />}
       <div className='modal-content-story'>
         <div className='story_prof_info'>
           <div className='person_img df'>
@@ -89,7 +119,7 @@ const StoryModal = ({ profilePic, additionalImages, username, currentIndex, clos
         </div>
       </div>
       <div className="close-btn" onClick={closeModal}>×</div>
-      <FontAwesomeIcon icon={faArrowRight} onClick={handleNextImage} className='next_story'/>
+      {showRightButton && <FontAwesomeIcon icon={faArrowRight} onClick={handleNextImage} className='next_story'/>}
     </div>
   );
 };
@@ -103,4 +133,5 @@ StoryModal.propTypes = {
 };
 
 export default StoryModal;
+
 

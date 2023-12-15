@@ -4,9 +4,10 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHouse,
+  faMagnifyingGlass,
+  faArrowRight
 } from '@fortawesome/free-solid-svg-icons';
 import {
-  faMagnifyingGlass,
   faComment,
   faBookmark,
   faMessage,
@@ -23,13 +24,83 @@ export default function MyProfile() {
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
 
+  // const storiesData = [
+  //   { profilePic: '/img/alihan.jpg', nickname: 'User1', additionalImages: ['/img/stoty_test.jpg', '/img/alihan.jpg', '/img/alimhan.jpg'] },
+  //   { profilePic: '/img/alihan.jpg', nickname: 'User2', additionalImages: ['/img/alihan.jpg', '/img/alihan.jpg'] },
+  // ];
   const storiesData = [
-    { profilePic: '/img/alihan.jpg', nickname: 'User1', additionalImages: ['/img/stoty_test.jpg', '/img/alihan.jpg', '/img/alimhan.jpg'] },
-    { profilePic: '/img/alihan.jpg', nickname: 'User2', additionalImages: ['/img/alihan.jpg', '/img/alihan.jpg'] },
+    {
+      id: 1,
+      nickname: 'alikhan.b',
+      fullName: 'Alikhan Bukeikhanov',
+      profilePic: '/img/alihan.jpg',
+      additionalImages: ['/img/stoty_test.jpg', '/img/alihan.jpg', '/img/alimhan.jpg']
+    },
+    {
+      id: 2,
+      nickname: 'akbaev.j',
+      fullName: 'Akbaev Zhakyp',
+      profilePic: '/img/jakyp.jpg',
+      additionalImages: ['/img/stoty_test.jpg', '/img/alihan.jpg', '/img/alimhan.jpg']
+      },
+    {
+      id: 3,
+      nickname: 'amanzholov.s',
+      fullName: 'Amanzholov Sadyk',
+      profilePic: '/img/amanjol.jpg',
+      additionalImages: ['/img/stoty_test.jpg', '/img/alihan.jpg', '/img/alimhan.jpg']
+    },
+    {
+      id: 4,
+      nickname: 'ahmet.b',
+      fullName: 'Beremzhanov Akhmet',
+      profilePic: '/img/ahmet.jpg',
+      additionalImages: ['/img/stoty_test.jpg', '/img/alihan.jpg', '/img/alimhan.jpg']
+    },
+    {
+      id: 5,
+      nickname: 'alimhan.e',
+      fullName: 'Ermekov Alimkhan',
+      profilePic: '/img/alimhan.jpg',
+      additionalImages: ['/img/stoty_test.jpg', '/img/alihan.jpg', '/img/alimhan.jpg']
+    },
+    {
+      id: 6,
+      nickname: 'khalil.g',
+      fullName: 'Gabbasov Khalil',
+      profilePic: '/img/halil.jpg',
+      additionalImages: ['/img/stoty_test.jpg', '/img/alihan.jpg', '/img/alimhan.jpg']
+    },
+    {
+      id: 7,
+      nickname: 'zhansha.d',
+      fullName: 'Zhansha Dosmukhamedov',
+      profilePic: '/img/jansha.jpg',
+      additionalImages: ['/img/stoty_test.jpg', '/img/alihan.jpg', '/img/alimhan.jpg']
+    },
+    {
+      id: 7,
+      nickname: 'zhansha.d',
+      fullName: 'Zhansha Dosmukhamedov',
+      profilePic: '/img/jansha.jpg',
+      additionalImages: ['/img/stoty_test.jpg', '/img/alihan.jpg', '/img/alimhan.jpg']
+    },
+    {
+      id: 7,
+      nickname: 'zhansha.d',
+      fullName: 'Zhansha Dosmukhamedov',
+      profilePic: '/img/jansha.jpg',
+      additionalImages: ['/img/stoty_test.jpg', '/img/alihan.jpg', '/img/alimhan.jpg']
+    },
+    {
+      id: 7,
+      nickname: 'zhansha.d',
+      fullName: 'Zhansha Dosmukhamedov',
+      profilePic: '/img/jansha.jpg',
+      additionalImages: ['/img/stoty_test.jpg', '/img/alihan.jpg', '/img/alimhan.jpg']
+    },
   ];
 
-  
-  
 
   return (
     <div className="main">
@@ -124,7 +195,7 @@ export default function MyProfile() {
                 <div className='time'>
                   <p>1 hour ago</p>
                 </div>
-                <div className='comment'>
+                <div className='comm'>
                   <FontAwesomeIcon icon={faFaceSmile} />
                   <input type="text" placeholder='Add a comment'/>
                   <button>Post</button>

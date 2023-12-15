@@ -17,10 +17,26 @@
     background-color: rgb(0, 0, 0);
 }
 .next_story{
+    position: absolute;
+    top: 45%;
+    right: 33%;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+.prev_story{
+    position: absolute;
+    top: 45%;
+    left: 33%;
     color: white;
     font-size: 30px;
     margin-left: 15px;
     cursor: pointer;
+}
+.story{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .story_prof_info{
     margin-top: 25px;
